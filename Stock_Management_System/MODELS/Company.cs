@@ -29,7 +29,7 @@ namespace Stock_Management_System.MODELS
                 this._companyName = aCompany;
             }
         }
-        public List<Company> ShowCompanies()
+        internal List<Company> ShowCompanies()
         {
             return companyManager.ShowCompanies();
         }

@@ -8,30 +8,30 @@ namespace Stock_Management_System.MODELS
 {
     public class Category
     {
-        CategoryManager categoryManager = new CategoryManager();
+        CategoryManager _categoryManager = new CategoryManager();
         private string _category;
 
         public string SaveCategory(string aCategory)
         {
             this._category = aCategory;
-            return SendCategory(aCategory);
+            return SendCategory(this._category);
         }
 
         private string SendCategory(string aCategory)
         {
-            return categoryManager.SendCategory(aCategory);
+            return _categoryManager.SendCategory(aCategory);
         }
 
         internal void GetValidCategory(string aCategory)
         {
-            if (categoryManager.IsCategoryExist(aCategory))
+            if (_categoryManager.IsCategoryExist(aCategory))
             {
                 this._category = aCategory;
             }
         }
         public List<Category> GetCategories()
         {
-            return categoryManager.GetCategories();
+            return _categoryManager.GetCategories();
         }
     }
 }

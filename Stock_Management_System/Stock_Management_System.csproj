@@ -171,6 +171,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="BLL\CategoryManager.cs" />
     <Compile Include="BLL\CompanyManager.cs" />
+    <Compile Include="BLL\ItemsManager.cs" />
+    <Compile Include="BLL\StockManager.cs" />
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -180,6 +182,8 @@
     </Compile>
     <Compile Include="DAL\CategoryAccessor.cs" />
     <Compile Include="DAL\CompanyAccesor.cs" />
+    <Compile Include="DAL\ItemsAccesor.cs" />
+    <Compile Include="DAL\StockAccesor.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -192,6 +196,9 @@
     </Compile>
     <Compile Include="MODELS\Category.cs" />
     <Compile Include="MODELS\Company.cs" />
+    <Compile Include="MODELS\Items.cs" />
+    <Compile Include="MODELS\StockIn.cs" />
+    <Compile Include="MODELS\StockOut.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
