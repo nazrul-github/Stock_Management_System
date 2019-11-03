@@ -7,6 +7,7 @@ using Stock_Management_System.MODELS;
 
 namespace Stock_Management_System.BLL
 {
+    [Serializable]
     public class StockManager
     {
         StockAccesor stockAccesor = new StockAccesor();
@@ -22,9 +23,9 @@ namespace Stock_Management_System.BLL
             return "Updating quantity failed";
         }
 
-        public string SendStockOutQuantity(int companyId, int itemId, int stockOutQuantity)
+        public string SendStockOutQuantity(string companyName, string itemName, int stockOutQuantity)
         {
-            bool isSaved = stockAccesor.SendStockOutQuantity(companyId, itemId, stockOutQuantity);
+            bool isSaved = stockAccesor.SendStockOutQuantity(companyName, itemName, stockOutQuantity);
             if (isSaved)
             {
                 return "Quantity updated successfully";
@@ -33,9 +34,9 @@ namespace Stock_Management_System.BLL
             return "Quantity update failed";
         }
 
-        public string SendSellQuantity(int companyId, int itemId, int stockOutQuanity, DateTime stockOutTime)
+        public string SendSellQuantity(string companyName, string itemName, int stockOutQuanity, DateTime stockOutTime)
         {
-            bool isSaved = stockAccesor.SendSellQuantity(companyId, itemId, stockOutQuanity,stockOutTime);
+            bool isSaved = stockAccesor.SendSellQuantity(companyName, itemName, stockOutQuanity,stockOutTime);
             if (isSaved)
             {
                 return "Quantity updated successfully";
@@ -44,9 +45,9 @@ namespace Stock_Management_System.BLL
             return "Quantity update failed";
         }
 
-        public string SendDamageQuantity(int companyId, int itemId, int stockOutQuanity, DateTime stockOutTime)
+        public string SendDamageQuantity(string companyName, string itemName, int stockOutQuanity, DateTime stockOutTime)
         {
-            bool isSaved = stockAccesor.SendDamageQuantity(companyId, itemId, stockOutQuanity, stockOutTime);
+            bool isSaved = stockAccesor.SendDamageQuantity(companyName, itemName, stockOutQuanity, stockOutTime);
             if (isSaved)
             {
                 return "Quantity updated successfully";
@@ -55,9 +56,9 @@ namespace Stock_Management_System.BLL
             return "Quantity update failed";
         }
 
-        public string SendLostQuantity(int companyId, int itemId, int stockOutQuanity, DateTime stockOutTime)
+        public string SendLostQuantity(string companyName, string itemName, int stockOutQuanity, DateTime stockOutTime)
         {
-            bool isSaved = stockAccesor.SendLostQuantity(companyId, itemId, stockOutQuanity, stockOutTime);
+            bool isSaved = stockAccesor.SendLostQuantity(companyName, itemName, stockOutQuanity, stockOutTime);
             if (isSaved)
             {
                 return "Quantity updated successfully";

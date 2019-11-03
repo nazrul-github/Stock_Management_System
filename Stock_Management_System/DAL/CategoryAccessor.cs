@@ -16,9 +16,10 @@ namespace Stock_Management_System.DAL
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 SqlCommand cmd = new SqlCommand();
-                cmd.CommandText = "SELECT * FROM tbl_Category WHERE Category = @Category;";
+                cmd.CommandText = "SELECT * FROM tbl_Category WHERE CategoryName = @Category;";
                 cmd.Parameters.AddWithValue("@Category", aCategory);
                 cmd.Connection = connection;
+                connection.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
                 if (reader.Read())
                 {
@@ -40,6 +41,7 @@ namespace Stock_Management_System.DAL
                 cmd.CommandText = "INSERT INTO tbl_Category VALUES(@Category);";
                 cmd.Parameters.AddWithValue("@Category", aCategory);
                 cmd.Connection = connection;
+                connection.Open();
                 int affected = cmd.ExecuteNonQuery();
                 if (affected > 0)
                 {
@@ -57,13 +59,14 @@ namespace Stock_Management_System.DAL
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 SqlCommand cmd = new SqlCommand();
-                cmd.CommandText = "SELECT * FROM tbl_Category;";
+                cmd.CommandText = "SELECT * FROM tbl_Category ORDER BY CategoryID DESC;";
                 cmd.Connection = connection;
+                connection.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
                     Category aCategory = new Category();
-                    aCategory.GetValidCategory(reader["CategoryName"].ToString());
+                    aCategory.GetValidCategory(reader["CategoryName"].ToString(),reader["CategoryID"].ToString());
                     allCategories.Add(aCategory);
                 }
                 connection.Close();

@@ -9,26 +9,31 @@ namespace Stock_Management_System.MODELS
     public class Items
     {
         ItemsManager itemsManager = new ItemsManager();
-        private string _itemName;
-        private int _category_id;
-        private int _reorderLabel;
-        private int _itemID;
-        private int _company_id;
-        private int _quanity;
+        public string ItemName { get; private set; }
+        public int CategoryId { get; private set; }
+        public int ReorderLabel { get; private set; }
+        public int ItemId { get; private set; }
+        public int CompanyId { get; private set; }
+        public int Quantity { get; private set; }
 
         public List<Items> GetItem(int companyId)
         {
             return itemsManager.GetItem(companyId);
         }
 
+        public Items GetAItem(int itemId)
+        {
+            return itemsManager.GetAItem(itemId);
+        }
+
         public string SaveItems(int categoryId, int companyId, string itemName, int reorderLabel)
         {
-            this._category_id = categoryId;
-            this._company_id = companyId;
-            this._itemName = itemName;
-            this._reorderLabel = reorderLabel;
+            this.CategoryId = categoryId;
+            this.CompanyId = companyId;
+            this.ItemName = itemName;
+            this.ReorderLabel = reorderLabel;
 
-            return SendItems(this._category_id, this._company_id, this._itemName, this._reorderLabel);
+            return SendItems(this.CategoryId, this.CompanyId, this.ItemName, this.ReorderLabel);
         }
 
         private string SendItems(int categoryId, int companyId, string itemName, int reorderLabel)
@@ -40,10 +45,10 @@ namespace Stock_Management_System.MODELS
         {
             if (itemsManager.IsExist(itemName))
             {
-                this._itemName = itemName;
-                this._itemID = itemId;
-                this._reorderLabel = reorderLabel;
-                this._quanity = quantity;
+                this.ItemName = itemName;
+                this.ItemId = itemId;
+                this.ReorderLabel = reorderLabel;
+                this.Quantity = quantity;
             }
         }
     }

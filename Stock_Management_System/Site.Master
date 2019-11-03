@@ -53,6 +53,12 @@
                         <li><a runat="server" href="~/">Home</a></li>
                         <li><a runat="server" href="~/About">About</a></li>
                         <li><a runat="server" href="~/Contact">Contact</a></li>
+                        <li><a runat="server" href="~/CategorySetup.aspx">Category</a></li>
+                        <li><a runat="server" href="~/CompanySetup.aspx">Company</a></li>
+                        <li><a runat="server" href="~/ItemSetup.aspx">Items</a></li>
+                        <li><a runat="server" href="~/StockInEntry.aspx">Stock In Record</a></li>
+                        <li><a runat="server" href="~/StockOutRecord.aspx">Stock Out Record</a></li>
+
                     </ul>
                 </div>
             </div>

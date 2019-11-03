@@ -106,6 +106,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
+    <Content Include="CompanySetup.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -124,6 +125,8 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="CategorySetup.aspx" />
+    <Content Include="ItemSetup.aspx" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -154,6 +157,8 @@
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
+    <Content Include="StockInEntry.aspx" />
+    <Content Include="StockOutRecord.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
@@ -173,6 +178,13 @@
     <Compile Include="BLL\CompanyManager.cs" />
     <Compile Include="BLL\ItemsManager.cs" />
     <Compile Include="BLL\StockManager.cs" />
+    <Compile Include="CompanySetup.aspx.cs">
+      <DependentUpon>CompanySetup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CompanySetup.aspx.designer.cs">
+      <DependentUpon>CompanySetup.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -214,12 +226,40 @@
     <Compile Include="Site.Mobile.Master.designer.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
     </Compile>
+    <Compile Include="StockInEntry.aspx.cs">
+      <DependentUpon>StockInEntry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StockInEntry.aspx.designer.cs">
+      <DependentUpon>StockInEntry.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="StockOutRecord.aspx.cs">
+      <DependentUpon>StockOutRecord.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StockOutRecord.aspx.designer.cs">
+      <DependentUpon>StockOutRecord.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="CategorySetup.aspx.cs">
+      <DependentUpon>CategorySetup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CategorySetup.aspx.designer.cs">
+      <DependentUpon>CategorySetup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ItemSetup.aspx.cs">
+      <DependentUpon>ItemSetup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ItemSetup.aspx.designer.cs">
+      <DependentUpon>ItemSetup.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

@@ -34,5 +34,10 @@ namespace Stock_Management_System.BLL
         {
             return itemsAccesor.GetItem(companyId);
         }
+
+        public Items GetAItem(int itemId)
+        {
+            return itemsAccesor.GetAItem(itemId);
+        }
     }
 }

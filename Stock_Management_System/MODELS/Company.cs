@@ -9,12 +9,13 @@ namespace Stock_Management_System.MODELS
     public class Company
     {
         CompanyManager companyManager = new CompanyManager();
-        private string _companyName;
+        public string CompanyName { get; private set; }
+        public string CompanyID { get; set; }
 
         public string SaveCompany(string companyName)
         {
-            this._companyName = companyName;
-            return SendCompany(this._companyName);
+            this.CompanyName = companyName;
+            return SendCompany(this.CompanyName);
         }
 
         private string SendCompany(string aCompany)
@@ -22,11 +23,12 @@ namespace Stock_Management_System.MODELS
             return companyManager.SendCompany(aCompany);
         }
 
-        internal void GetValidCompany(string aCompany)
+        internal void GetValidCompany(string companyName,string companyId)
         {
-            if (companyManager.isCompanyExist(aCompany))
+            if (companyManager.isCompanyExist(companyName))
             {
-                this._companyName = aCompany;
+                this.CompanyName = companyName;
+                this.CompanyID = companyId;
             }
         }
         internal List<Company> ShowCompanies()

@@ -6,69 +6,70 @@ using Stock_Management_System.BLL;
 
 namespace Stock_Management_System.MODELS
 {
+    [Serializable]
     public class StockOut
     {
         StockManager stockManager = new StockManager();
-        private int _itemID;
-        private string _itemName;
-        private int _company_id;
-        private int _stockOutQuanity;
-        public DateTime _stockOutTime { get; set; }
+        public int ItemId { get; set; }
+        public string ItemName { get; set; }
+        public int CompanyId { get; set; }
+        public string CompanyName { get; set; }
+        public int StockOutQuantity { get; set; }
+        public DateTime StockOutTime { get; set; }
 
-        public string SaveStockOut(int companyId, int itemId, int stockOutQuantity)
+        public string SaveStockOut(string companyName, string itemName, int stockOutQuantity)
         {
-            this._company_id = companyId;
-            this._itemID = itemId;
-            this._stockOutQuanity = stockOutQuantity;
-            return SendStockOutQuantity(this._company_id,this._itemID,this._stockOutQuanity);
-        }
-
-        private string SendStockOutQuantity(int companyId, int itemId, int stockOutQuantity)
-        {
-            return stockManager.SendStockOutQuantity(companyId, itemId, stockOutQuantity);
-        }
-        public string SaveSaleQuantity(int companyId, int itemId, int sellQuantity,DateTime timeStamp)
-        {
-            this._company_id = companyId;
-            this._itemID = itemId;
-            this._stockOutQuanity = sellQuantity;
-            this._stockOutTime = timeStamp;
-            return SendSellQuantity(this._company_id,this._itemID,this._stockOutQuanity,this._stockOutTime);
+            this.CompanyName = companyName;
+            this.ItemName = itemName;
+            this.StockOutQuantity = stockOutQuantity;
+            return SendStockOutQuantity(this.CompanyName,this.ItemName,this.StockOutQuantity);
         }
 
-        private string SendSellQuantity(int companyId, int itemId, int stockOutQuantity, DateTime timeStamp)
+        private string SendStockOutQuantity(string companyName, string itemName, int stockOutQuantity)
         {
-            return stockManager.SendSellQuantity(this._company_id, this._itemID, this._stockOutQuanity, this._stockOutTime);
+            return stockManager.SendStockOutQuantity(companyName, itemName, stockOutQuantity);
         }
-        public string SaveDamageQuantity(int companyId, int itemId, int damageQuantity, DateTime timeStamp)
+        public string SaveSaleQuantity(string companyName, string itemName, int stockOutQuantity)
         {
-            this._company_id = companyId;
-            this._itemID = itemId;
-            this._stockOutQuanity = damageQuantity;
-            return SendDamageQuantity(this._company_id, this._itemID, this._stockOutQuanity, this._stockOutTime);
+            this.CompanyName = companyName;
+            this.ItemName = itemName;
+            this.StockOutQuantity = stockOutQuantity;
+            return SendStockOutQuantity(this.CompanyName, this.ItemName, this.StockOutQuantity);
         }
 
-        private string SendDamageQuantity(int companyId, int itemId, int damageQuantity, DateTime timeStamp)
+        private string SendSellQuantity(string companyName, string itemName, int stockOutQuantity)
         {
-            return stockManager.SendDamageQuantity(this._company_id, this._itemID, this._stockOutQuanity, this._stockOutTime);
+            return stockManager.SendSellQuantity(companyName, itemName, stockOutQuantity, this.StockOutTime);
+        }
+        public string SaveDamageQuantity(string companyName, string itemName, int damageQuantity, DateTime timeStamp)
+        {
+            this.CompanyName = companyName;
+            this.ItemName = itemName;
+            this.StockOutQuantity = damageQuantity;
+            return SendDamageQuantity(this.CompanyName, this.ItemName, this.StockOutQuantity, this.StockOutTime);
+        }
+
+        private string SendDamageQuantity(string companyName, string itemName, int damageQuantity, DateTime timeStamp)
+        {
+            return stockManager.SendDamageQuantity(this.CompanyName, this.ItemName, this.StockOutQuantity, this.StockOutTime);
         }
         public string SaveLostQuantity(int companyId, int itemId, int lostQuantity, DateTime timeStamp)
         {
-            this._company_id = companyId;
-            this._itemID = itemId;
-            this._stockOutQuanity = lostQuantity;
-            return SendLostQuantity(this._company_id, this._itemID, this._stockOutQuanity, this._stockOutTime);
+            this.CompanyId = companyId;
+            this.ItemId = itemId;
+            this.StockOutQuantity = lostQuantity;
+            return SendLostQuantity(this.CompanyId, this.ItemId, this.StockOutQuantity, this.StockOutTime);
         }
 
         private string SendLostQuantity(int companyId, int itemId, int damageQuantity, DateTime timeStamp)
         {
-            return stockManager.SendLostQuantity(this._company_id, this._itemID, this._stockOutQuanity, this._stockOutTime);
+            return stockManager.SendLostQuantity(this.CompanyName, this.ItemName, this.StockOutQuantity, this.StockOutTime);
         }
 
         internal void GetSales(string itemName, int salesQuantity)
         {
-            this._itemName = itemName;
-            this._stockOutQuanity = salesQuantity;
+            this.ItemName = itemName;
+            this.StockOutQuantity = salesQuantity;
 
         }
 

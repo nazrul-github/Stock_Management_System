@@ -18,7 +18,8 @@ namespace Stock_Management_System.DAL
             {
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = connection;
-                cmd.CommandText = "";
+                cmd.CommandText = "SELECT * FROM tbl_Items WHERE ItemName = @ItemName";
+                cmd.Parameters.AddWithValue("@ItemName", itemName);
                 connection.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
                 if (reader.Read())
@@ -63,7 +64,7 @@ namespace Stock_Management_System.DAL
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 SqlCommand cmd = new SqlCommand();
-                cmd.CommandText = "SELECT *  FROM tbl_ItemsAvailable WHERE CompanyId = @CompanyId; ";
+                cmd.CommandText = "SELECT *  FROM tbl_ItemsAvailableQuantity WHERE CompanyId = @CompanyId ORDER BY ItemName DESC; ";
                 cmd.Parameters.AddWithValue("@CompanyId", companyId);
                 cmd.Connection = connection;
                 connection.Open();
@@ -82,7 +83,26 @@ namespace Stock_Management_System.DAL
         }
 
 
-
-
+        public Items GetAItem(int itemId)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandText = "SELECT *  FROM tbl_ItemsAvailableQuantity WHERE ItemID = @ItemId ; ";
+                cmd.Parameters.AddWithValue("@ItemId", itemId);
+                cmd.Connection = connection;
+                connection.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                    Items aItem = new Items();
+                while (reader.Read())
+                {
+                    aItem.GetValidItems(reader["ItemName"].ToString(), Convert.ToInt32(reader["ItemID"]),
+                        Convert.ToInt32(reader["ReorderLabel"]), Convert.ToInt32(reader["Quantity"]));
+                }
+                reader.Read();
+                connection.Close();
+                return aItem;
+            }
+        }
     }
 }

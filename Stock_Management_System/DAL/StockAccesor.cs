@@ -8,6 +8,7 @@ using Stock_Management_System.MODELS;
 
 namespace Stock_Management_System.DAL
 {
+    [Serializable]
     public class StockAccesor
     {
         private readonly string connectionString = WebConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
@@ -19,7 +20,7 @@ namespace Stock_Management_System.DAL
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = connection;
                 cmd.CommandText =
-                    "INSERT INTO tbl_StockIn (Quantity)VALUES(@Quantity) WHERE CompanyId = @CompanyId AND ItemId = @ItemID;";
+                    "UPDATE tbl_Items SET StockIn = @Quantity WHERE CompanyId = @CompanyId AND ItemID = @ItemID;";
                 cmd.Parameters.AddWithValue("@Quantity", quantity);
                 cmd.Parameters.AddWithValue("@CompanyId", companyId);
                 cmd.Parameters.AddWithValue("@ItemID", itemId);
@@ -34,17 +35,17 @@ namespace Stock_Management_System.DAL
                 return false;
             }
         }
-        public bool SendStockOutQuantity(int companyId, int itemId, int stockOutQuantity)
+        public bool SendStockOutQuantity(string companyName, string itemName, int stockOutQuantity)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = connection;
                 cmd.CommandText =
-                    "INSERT INTO tbl_StockOut (Quantity)VALUES(@Quantity) WHERE CompanyId = @CompanyId AND ItemId = @ItemID;";
+                    "UPDATE tbl_Items SET StockOut = @Quantity WHERE CompanyName = @CompanyName AND ItemName = @ItemName;";
                 cmd.Parameters.AddWithValue("@Quantity", stockOutQuantity);
-                cmd.Parameters.AddWithValue("@CompanyId", companyId);
-                cmd.Parameters.AddWithValue("@ItemID", itemId);
+                cmd.Parameters.AddWithValue("@CompanyName", companyName);
+                cmd.Parameters.AddWithValue("@ItemName", itemName);
                 connection.Open();
                 int affected = cmd.ExecuteNonQuery();
                 if (affected > 0)
@@ -57,18 +58,18 @@ namespace Stock_Management_System.DAL
             }
         }
 
-        public bool SendSellQuantity(int companyId, int itemId, int stockOutQuanity, DateTime stockOutTime)
+        public bool SendSellQuantity(string companyName, string itemName, int stockOutQuanity, DateTime stockOutTime)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = connection;
                 cmd.CommandText =
-                    "INSERT INSERT INTO tbl_Sales VALUES(@CompanyId,@ItemId,@Quantity,@Time);";
+                    "INSERT INSERT INTO tbl_Sales VALUES(@CompanyName,@ItemName,@Quantity,@Time);";
                 cmd.Parameters.AddWithValue("@Quantity", stockOutQuanity);
-                cmd.Parameters.AddWithValue("@CompanyId", companyId);
-                cmd.Parameters.AddWithValue("@ItemID", itemId);
-                cmd.Parameters.AddWithValue("@StockOutTime", stockOutTime);
+                cmd.Parameters.AddWithValue("@CompanyName", companyName);
+                cmd.Parameters.AddWithValue("@ItemName", itemName);
+                cmd.Parameters.AddWithValue("@Time", stockOutTime);
                 connection.Open();
                 int affected = cmd.ExecuteNonQuery();
                 if (affected > 0)
@@ -81,7 +82,7 @@ namespace Stock_Management_System.DAL
             }
         }
 
-        public bool SendDamageQuantity(int companyId, int itemId, int stockOutQuanity, DateTime stockOutTime)
+        public bool SendDamageQuantity(string companyName, string itemName, int stockOutQuanity, DateTime stockOutTime)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -90,8 +91,8 @@ namespace Stock_Management_System.DAL
                 cmd.CommandText =
                     "INSERT INSERT INTO tbl_Damaged VALUES(@CompanyId,@ItemId,@Quantity,@Time);";
                 cmd.Parameters.AddWithValue("@Quantity", stockOutQuanity);
-                cmd.Parameters.AddWithValue("@CompanyId", companyId);
-                cmd.Parameters.AddWithValue("@ItemID", itemId);
+                cmd.Parameters.AddWithValue("@CompanyId", companyName);
+                cmd.Parameters.AddWithValue("@ItemID", itemName);
                 cmd.Parameters.AddWithValue("@StockOutTime", stockOutTime);
                 connection.Open();
                 int affected = cmd.ExecuteNonQuery();
@@ -105,7 +106,7 @@ namespace Stock_Management_System.DAL
             }
         }
 
-        public bool SendLostQuantity(int companyId, int itemId, int stockOutQuanity, DateTime stockOutTime)
+        public bool SendLostQuantity(string companyName, string itemName, int stockOutQuanity, DateTime stockOutTime)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -114,8 +115,8 @@ namespace Stock_Management_System.DAL
                 cmd.CommandText =
                     "INSERT INSERT INTO tbl_Lost VALUES(@CompanyId,@ItemId,@Quantity,@Time);";
                 cmd.Parameters.AddWithValue("@Quantity", stockOutQuanity);
-                cmd.Parameters.AddWithValue("@CompanyId", companyId);
-                cmd.Parameters.AddWithValue("@ItemID", itemId);
+                cmd.Parameters.AddWithValue("@CompanyId", companyName);
+                cmd.Parameters.AddWithValue("@ItemID", itemName);
                 cmd.Parameters.AddWithValue("@StockOutTime", stockOutTime);
                 connection.Open();
                 int affected = cmd.ExecuteNonQuery();

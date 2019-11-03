@@ -9,12 +9,14 @@ namespace Stock_Management_System.MODELS
     public class Category
     {
         CategoryManager _categoryManager = new CategoryManager();
-        private string _category;
+
+        public string CategoryName { get; private set; }
+        public string CategoryID { get; private set; }
 
         public string SaveCategory(string aCategory)
         {
-            this._category = aCategory;
-            return SendCategory(this._category);
+            this.CategoryName = aCategory;
+            return SendCategory(this.CategoryName);
         }
 
         private string SendCategory(string aCategory)
@@ -22,11 +24,12 @@ namespace Stock_Management_System.MODELS
             return _categoryManager.SendCategory(aCategory);
         }
 
-        internal void GetValidCategory(string aCategory)
+        internal void GetValidCategory(string categoryName,string categoryId)
         {
-            if (_categoryManager.IsCategoryExist(aCategory))
+            if (_categoryManager.IsCategoryExist(categoryName))
             {
-                this._category = aCategory;
+                this.CategoryName = categoryName;
+                this.CategoryID = categoryId;
             }
         }
         public List<Category> GetCategories()

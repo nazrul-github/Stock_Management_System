@@ -20,6 +20,7 @@ namespace Stock_Management_System.DAL
                 cmd.CommandText = "SELECT * FROM tbl_company WHERE CompanyName = @CompanyName";
                 cmd.Parameters.AddWithValue("@CompanyName", aCompany);
                 cmd.Connection = connection;
+                connection.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
                 if (reader.Read())
                 {
@@ -59,16 +60,16 @@ namespace Stock_Management_System.DAL
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 SqlCommand cmd = new SqlCommand();
-                cmd.CommandText = "SELECT * FROM tbl_company";
+                cmd.CommandText = "SELECT * FROM tbl_company ORDER BY CompanyId DESC";
                 cmd.Connection = connection;
+                connection.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
                     Company aCompany = new Company();
-                    aCompany.GetValidCompany(reader["CompanyName"].ToString());
+                    aCompany.GetValidCompany(reader["CompanyName"].ToString(),reader["CompanyId"].ToString());
                     allCompanies.Add(aCompany);
                 }
-
                 reader.Close();
                 connection.Close();
                 return allCompanies;
