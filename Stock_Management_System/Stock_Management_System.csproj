@@ -128,6 +128,7 @@
     <Content Include="CategorySetup.aspx" />
     <Content Include="ItemSetup.aspx" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="ItemsSummary.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -159,6 +160,7 @@
     <Content Include="Site.Master" />
     <Content Include="StockInEntry.aspx" />
     <Content Include="StockOutRecord.aspx" />
+    <Content Include="ViewSalesBetweenDates.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
@@ -206,6 +208,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="ItemsSummary.aspx.cs">
+      <DependentUpon>ItemsSummary.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ItemsSummary.aspx.designer.cs">
+      <DependentUpon>ItemsSummary.aspx</DependentUpon>
+    </Compile>
     <Compile Include="MODELS\Category.cs" />
     <Compile Include="MODELS\Company.cs" />
     <Compile Include="MODELS\Items.cs" />
@@ -239,6 +248,13 @@
     </Compile>
     <Compile Include="StockOutRecord.aspx.designer.cs">
       <DependentUpon>StockOutRecord.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewSalesBetweenDates.aspx.cs">
+      <DependentUpon>ViewSalesBetweenDates.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewSalesBetweenDates.aspx.designer.cs">
+      <DependentUpon>ViewSalesBetweenDates.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>

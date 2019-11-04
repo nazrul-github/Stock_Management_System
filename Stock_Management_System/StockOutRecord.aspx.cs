@@ -30,11 +30,14 @@ namespace Stock_Management_System
             {
                 stockOuts = (List<StockOut>)ViewState["Stock Out"];
             }
-            string companyName = ddlCompany.SelectedItem.Text;
+
+            int companyId = Convert.ToInt32(ddlCompany.SelectedValue);
+            string compnayName = ddlCompany.SelectedItem.Text;
+            int itemId = Convert.ToInt32(ddlItem.SelectedValue);
             string itemName = ddlItem.SelectedItem.Text;
             int quantity = Convert.ToInt32(stockOutTextBox.Text);
 
-            stockOuts.Add(new StockOut() { CompanyName = companyName, ItemName = itemName, StockOutQuantity = quantity });
+            stockOuts.Add(new StockOut() { CompanyId = companyId,CompanyName = compnayName,ItemId = itemId,ItemName = itemName,StockOutQuantity = quantity });
             showAllGridView.DataSource = stockOuts;
             showAllGridView.DataBind();
             ViewState["Stock Out"] = stockOuts;
@@ -68,10 +71,12 @@ namespace Stock_Management_System
             List<StockOut> stockOuts = (List<StockOut>)ViewState["Stock Out"];
             foreach (var items in stockOuts)
             {
-                string companyName = items.CompanyName;
-                string itemName = items.ItemName;
+                int companyId = items.CompanyId;
+                int itemId = items.ItemId;
                 int quantity = items.StockOutQuantity;
-                stockOut.SaveSaleQuantity(companyName, itemName, quantity);
+                string time = DateTime.Today.ToString("yyyy MMMM dd");
+                stockOut.SaveSaleQuantity(companyId, itemId, quantity,time);
+                stockOut.SaveStockOut(companyId, itemId, quantity);
             }
         }
 

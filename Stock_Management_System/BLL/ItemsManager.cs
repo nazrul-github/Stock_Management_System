@@ -39,5 +39,13 @@ namespace Stock_Management_System.BLL
         {
             return itemsAccesor.GetAItem(itemId);
         }
+
+        public List<Items> GetCompanyAndCategory(int companyId, int categoryId)
+        {
+            return itemsAccesor.GetCompanyAndCategory(companyId, categoryId);
+        } public List<Items> GetCompanyOrCategory(int companyId, int categoryId)
+        {
+            return itemsAccesor.GetCompanyOrCategory(companyId, categoryId);
+        }
     }
 }

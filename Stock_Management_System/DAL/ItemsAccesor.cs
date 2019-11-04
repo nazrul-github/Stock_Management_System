@@ -93,7 +93,7 @@ namespace Stock_Management_System.DAL
                 cmd.Connection = connection;
                 connection.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
-                    Items aItem = new Items();
+                Items aItem = new Items();
                 while (reader.Read())
                 {
                     aItem.GetValidItems(reader["ItemName"].ToString(), Convert.ToInt32(reader["ItemID"]),
@@ -102,6 +102,57 @@ namespace Stock_Management_System.DAL
                 reader.Read();
                 connection.Close();
                 return aItem;
+            }
+        }
+
+        public List<Items> GetCompanyAndCategory(int companyId, int categoryId)
+        {
+            List<Items> allItems = new List<Items>();
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandText = "SELECT *  FROM tbl_ItemsAvailableQuantity WHERE CompanyId = @CompanyId AND CategoryId = @CategoryId; ";
+                cmd.Parameters.AddWithValue("@CompanyId", companyId);
+                cmd.Parameters.AddWithValue("@CategoryId", categoryId);
+                cmd.Connection = connection;
+                connection.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    Items aItem = new Items();
+                    aItem.GetAllItems(reader["ItemName"].ToString(), reader["CompanyName"].ToString(),
+                        reader["CategoryName"].ToString(), Convert.ToInt32(reader["Quantity"]),
+                        Convert.ToInt32(reader["ReorderLabel"]));
+                    allItems.Add(aItem);
+                }
+                reader.Read();
+                connection.Close();
+                return allItems;
+            }
+        }
+        public List<Items> GetCompanyOrCategory(int companyId, int categoryId)
+        {
+            List<Items> allItems = new List<Items>();
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandText = "SELECT *  FROM tbl_ItemsAvailableQuantity WHERE CompanyId = @CompanyId OR CategoryId = @CategoryId; ";
+                cmd.Parameters.AddWithValue("@CompanyId", companyId);
+                cmd.Parameters.AddWithValue("@CategoryId", categoryId);
+                cmd.Connection = connection;
+                connection.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    Items aItem = new Items();
+                    aItem.GetAllItems(reader["ItemName"].ToString(), reader["CompanyName"].ToString(),
+                        reader["CategoryName"].ToString(), Convert.ToInt32(reader["Quantity"]),
+                        Convert.ToInt32(reader["ReorderLabel"]));
+                    allItems.Add(aItem);
+                }
+                reader.Read();
+                connection.Close();
+                return allItems;
             }
         }
     }
